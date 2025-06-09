@@ -2,6 +2,7 @@ import { AppState } from "../AppState.js";
 import { Monster } from "../models/Monster.js";
 
 class MonstersService {
+
   async getBreathOfTheWildMonsters() {
     const response = await fetch('https://botw-compendium.herokuapp.com/api/v3/compendium/category/monsters?game=botw')
 
@@ -32,6 +33,19 @@ class MonstersService {
     AppState.monsters = monsters // 💂!!!
     // console.log(AppState.monsters);
 
+  }
+
+  async getMonsters(gameName) {
+    const response = await fetch(`https://botw-compendium.herokuapp.com/api/v3/compendium/category/monsters?game=${gameName}`)
+
+    if (response.status != 200) {
+      throw new Error("COULD NOT GET THOSE DANG MONSTERS")
+    }
+
+    const json = await response.json()
+    const monsters = json.data.map(pojo => new Monster(pojo))
+
+    AppState.monsters = monsters // 💂!!!
   }
 }
 
