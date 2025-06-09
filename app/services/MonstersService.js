@@ -1,3 +1,6 @@
+import { AppState } from "../AppState.js";
+import { Monster } from "../models/Monster.js";
+
 class MonstersService {
   async getMonsters() {
     const response = await fetch('https://botw-compendium.herokuapp.com/api/v3/compendium/category/monsters?game=totk')
@@ -8,6 +11,12 @@ class MonstersService {
 
     const json = await response.json()
     console.log('response from Monsters API', json.data);
+    const monsters = json.data.map(pojo => new Monster(pojo))
+    // console.log('MONSTERS', monsters);
+
+    AppState.monsters = monsters
+    // console.log(AppState.monsters);
+
   }
 }
 
