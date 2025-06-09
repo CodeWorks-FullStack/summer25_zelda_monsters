@@ -31,8 +31,8 @@ class MonstersService {
     const monsters = json.data.map(pojo => new Monster(pojo))
     // console.log('MONSTERS', monsters);
 
+    // NOTE this is our data now and we can do whatever we want with it!
     AppState.monsters = monsters // 💂!!!
-    // console.log(AppState.monsters);
 
   }
 
