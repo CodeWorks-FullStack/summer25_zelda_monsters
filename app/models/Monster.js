@@ -1,6 +1,8 @@
 export class Monster {
   // NOTE data objects are coming from the API that we reaching out to, make sure you look at your console to grab all of the values we care about
   constructor(data) {
+    // NOTE left-hand-side is the property on our model, right-hand-side is the property coming from the API
+    // NOTE we can call our properties whatever we want!
     this.commonLocations = data.common_locations
     this.description = data.description
     this.isDLC = data.dlc
@@ -48,7 +50,6 @@ export class Monster {
       return 'No common locations'
     }
 
-
     let content = ''
     this.commonLocations.forEach(location => content += `<li>${location}</li>`)
     return content
@@ -57,7 +58,6 @@ export class Monster {
     if (this.lootDrops == null) {
       return 'No drops'
     }
-
 
     let content = ''
     this.lootDrops.forEach(drop => content += `<li>${drop}</li>`)
