@@ -11,40 +11,56 @@ export class Monster {
   }
 
   get cardHTMLTemplate() {
-    return /*html*/`
-    <div class="col-md-6">
+    return `
+    <div class="col-md-4 mb-3">
       <div class="card">
-        <img src="https://botw-compendium.herokuapp.com/api/v3/compendium/entry/water_octorok/image?game=totk"
-          class="card-img-top" alt="water octorok">
+        <img src="${this.imgUrl}"
+          class="card-img-top" alt="${this.name}">
         <div class="card-body">
           <div class="d-flex gap-3">
             <p class="card-title fs-5 fw-bold">${this.name}</p>
-            <div class="fs-3" title="DLC monster">
+            <div class="fs-3 ${this.isDLC ? '' : 'd-none'}" title="DLC monster">
               <span class="mdi mdi-cash-100"></span>
               <span class="mdi mdi-download"></span>
             </div>
           </div>
-          <p class="card-text">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta nam itaque necessitatibus nostrum
-            dolorem aperiam fugit dolor, est beatae voluptate.
-          </p>
+          <p class="card-text">${this.description}</p>
           <div>
             <b>Locations</b>
             <ul>
-              <li>The lake</li>
-              <li>The desert</li>
+              ${this.locationListItems}
             </ul>
           </div>
           <div>
             <b>Loot Drops</b>
             <ul>
-              <li>tentacle</li>
-              <li>eyeball</li>
+             ${this.dropListItems}
             </ul>
           </div>
         </div>
       </div>
     </div>
     `
+  }
+
+  get locationListItems() {
+    if (this.commonLocations == null) {
+      return 'No common locations'
+    }
+
+
+    let content = ''
+    this.commonLocations.forEach(location => content += `<li>${location}</li>`)
+    return content
+  }
+  get dropListItems() {
+    if (this.lootDrops == null) {
+      return 'No drops'
+    }
+
+
+    let content = ''
+    this.lootDrops.forEach(drop => content += `<li>${drop}</li>`)
+    return content
   }
 }
