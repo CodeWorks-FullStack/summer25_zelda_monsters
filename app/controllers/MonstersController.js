@@ -6,12 +6,21 @@ export class MonstersController {
   constructor() {
     console.log('MONSTERS CONTROLLER IS READY 👽🧌👹👻');
     AppState.on('monsters', this.drawMonsters)
-    this.getMonsters()
+    this.getTearsOfTheKingdomMonsters()
   }
 
-  async getMonsters() {
+  async getTearsOfTheKingdomMonsters() {
     try {
-      await monstersService.getMonsters()
+      await monstersService.getTearsOfTheKingdomMonsters()
+      Pop.success('Got the monsters!')
+    } catch (error) {
+      console.error('COULD NOT GET MONSTERS FROM API', error)
+      Pop.error(error, 'SOMETHING WENT WRONG', 'try refreshing your page, or write better code dude')
+    }
+  }
+  async getBreathOfTheWildMonsters() {
+    try {
+      await monstersService.getBreathOfTheWildMonsters()
       Pop.success('Got the monsters!')
     } catch (error) {
       console.error('COULD NOT GET MONSTERS FROM API', error)

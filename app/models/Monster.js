@@ -18,7 +18,7 @@ export class Monster {
           class="card-img-top" alt="${this.name}">
         <div class="card-body">
           <div class="d-flex gap-3">
-            <p class="card-title fs-5 fw-bold">${this.name}</p>
+            <p class="card-title fs-5 fw-bold text-capitalize">${this.name}</p>
             <div class="fs-3 ${this.isDLC ? '' : 'd-none'}" title="DLC monster">
               <span class="mdi mdi-cash-100"></span>
               <span class="mdi mdi-download"></span>
